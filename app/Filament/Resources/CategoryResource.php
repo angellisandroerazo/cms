@@ -17,7 +17,7 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-group';
 
     public static function form(Form $form): Form
     {
@@ -26,10 +26,15 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(190),
+                Forms\Components\TextInput::make('slug')
+                    ->readonly()
+                    ->hiddenOn('create')
+                    ->hint('Solo puedes copiar este texto'),
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->rows(5)
-                    ->maxLength(190),
+                    ->maxLength(190)
+                    ->columnSpanFull(),
             ]);
     }
 

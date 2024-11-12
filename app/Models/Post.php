@@ -11,6 +11,7 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Tags\HasTags;
 
 class Post extends Model
 {
@@ -27,7 +28,7 @@ class Post extends Model
         'body',
         'image',
         'is_published',
-        'autor_id',
+        'author_id',
         'category_id',
     ];
 
@@ -43,7 +44,7 @@ class Post extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly(['name', 'text']);
+            ->logOnly(['title', 'body', 'is_published', 'category_id']);
     }
 
     public function category(): BelongsTo
@@ -53,11 +54,16 @@ class Post extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'autor_id');
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function tag()
+    {
+        return $this->belongsToMany(Tag::class, 'taggables')->withTimestamps();
     }
 }

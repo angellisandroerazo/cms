@@ -17,10 +17,10 @@ return new class extends Migration {
             $table->text('body');
             $table->string('image');
             $table->boolean('is_published')->default(false);
-            $table->uuid('autor_id');
+            $table->uuid('author_id');
             $table->uuid('category_id');
             $table->timestamps();
-            $table->foreign('autor_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('author_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }

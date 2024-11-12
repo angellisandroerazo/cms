@@ -18,7 +18,6 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Yebor974\Filament\RenewPassword\RenewPasswordPlugin;
-use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
 use Rmsramos\Activitylog\ActivitylogPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -27,14 +26,16 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->id('admin')
-            ->path('admin')
+            ->id('dashboard')
+            ->path('dashboard')
             ->registration()
             ->login()
             ->profile()
+            ->sidebarCollapsibleOnDesktop()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue,
             ])
+            ->favicon(asset('/images/favicon_io/favicon.ico'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -63,8 +64,8 @@ class AdminPanelProvider extends PanelProvider
                 RenewPasswordPlugin::make()
                     ->passwordExpiresIn(days: 30)
                     ->forceRenewPassword(),
-                FilamentSpatieLaravelBackupPlugin::make(),
                 ActivitylogPlugin::make(),
+
             ]);
         ;
     }

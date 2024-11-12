@@ -4,11 +4,14 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 use Yebor974\Filament\RenewPassword\Traits\RenewPassword;
 use Yebor974\Filament\RenewPassword\Contracts\RenewPasswordContract;
@@ -17,7 +20,7 @@ use Filament\Models\Contracts\FilamentUser;
 class User extends Authenticatable implements RenewPasswordContract, FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasUuids, HasRoles, HasPanelShield, RenewPassword;
+    use HasFactory, Notifiable, HasUuids, HasRoles, HasPanelShield, RenewPassword, LogsActivity;
 
     protected $table = 'users';
     protected $primaryKey = 'id';
@@ -60,7 +63,24 @@ class User extends Authenticatable implements RenewPasswordContract, FilamentUse
         ];
     }
 
-    public function posts(): HasMany{
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['name', 'email' , 'password', 'last_renew_password_at']);
+    }
+
+    public function posts(): HasMany
+    {
         return $this->hasMany(Post::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 }
