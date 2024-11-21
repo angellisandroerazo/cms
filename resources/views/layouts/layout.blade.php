@@ -11,8 +11,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', config('app.name'))</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_io/favicon-16x16.png">
+    <title>@yield('title', "{{$system->name_site}}")</title>
+    <link rel="icon" type="image/ico" sizes="16x16" href="{{$system->url_site}}/storage/{{$system->favicon}}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 

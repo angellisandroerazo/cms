@@ -1,5 +1,6 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -17,7 +18,7 @@ export default {
         },
     },
 
-    plugins: [require("daisyui")],
+    plugins: [require("daisyui"), forms, typography],
 
     daisyui: {
         themes: [
@@ -27,7 +28,7 @@ export default {
 
                     secondary: "#1e3a8a",
 
-                    accent: "#6b7d85",
+                    accent: "#e7e7e7",
 
                     neutral: "#1d2127",
 
@@ -41,13 +42,13 @@ export default {
 
                     error: "#ff5861",
 
-                   "--rounded-box": "1rem", // border radius rounded-box utility class, used in card and other large boxes
-                    "--rounded-btn": "0.25rem", // border radius rounded-btn utility class, used in buttons and similar element
-                    "--rounded-badge": "0.25rem", // border radius rounded-badge utility class, used in badges and similar
+                    "--rounded-box": "0.25rem", // border radius rounded-box utility class, used in card and other large boxes
+                    "--rounded-btn": "0.5rem", // border radius rounded-btn utility class, used in buttons and similar element
+                    "--rounded-badge": "0.5rem", // border radius rounded-badge utility class, used in badges and similar
                     "--animation-btn": "0.25s", // duration of animation when you click on button
                     "--animation-input": "0.2s", // duration of animation for inputs like checkbox, toggle, radio, etc
                     "--btn-focus-scale": "0.95", // scale transform of button when you focus on it
-                    "--border-btn": "1px", // border width of buttons
+                    "--border-btn": "0.5rem", // border width of buttons
                     "--tab-border": "1px", // border width of tabs
                     "--tab-radius": "0.5rem", // border radius of tabs
                 },
@@ -56,7 +57,7 @@ export default {
 
                     secondary: "#1e3a8a",
 
-                    accent: "#6b7d85",
+                    accent: "#434343",
 
                     neutral: "#1d2127",
 
@@ -70,13 +71,13 @@ export default {
 
                     error: "#ff5861",
 
-                    "--rounded-box": "1rem", // border radius rounded-box utility class, used in card and other large boxes
-                    "--rounded-btn": "0.25rem", // border radius rounded-btn utility class, used in buttons and similar element
-                    "--rounded-badge": "0.25rem", // border radius rounded-badge utility class, used in badges and similar
+                    "--rounded-box": "0.25rem", // border radius rounded-box utility class, used in card and other large boxes
+                    "--rounded-btn": "0.5rem", // border radius rounded-btn utility class, used in buttons and similar element
+                    "--rounded-badge": "0.5rem", // border radius rounded-badge utility class, used in badges and similar
                     "--animation-btn": "0.25s", // duration of animation when you click on button
                     "--animation-input": "0.2s", // duration of animation for inputs like checkbox, toggle, radio, etc
                     "--btn-focus-scale": "0.95", // scale transform of button when you focus on it
-                    "--border-btn": "1px", // border width of buttons
+                    "--border-btn": "0.5rem", // border width of buttons
                     "--tab-border": "1px", // border width of tabs
                     "--tab-radius": "0.5rem", // border radius of tabs
                 },

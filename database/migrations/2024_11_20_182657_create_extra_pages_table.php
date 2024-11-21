@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('extra_pages', function (Blueprint $table) {
             $table->uuid('id')->primary()->unique();
+            $table->string('title');
+            $table->string('slug')->unique();
             $table->text('body');
-            $table->uuid('author_id');
-            $table->uuid('post_id');
+            $table->boolean('show');
             $table->timestamps();
-            $table->foreign('post_id')->references('id')->on('posts')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreign('author_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('extra_pages');
     }
 };

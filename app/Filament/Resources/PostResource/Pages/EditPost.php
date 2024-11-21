@@ -16,7 +16,7 @@ class EditPost extends EditRecord
         return [
             Actions\ViewAction::make('Ver')
                 ->label('Ir a la publicación')
-                ->url(fn(Post $post) => url("/{$post->slug}"))
+                ->url(fn(Post $post) => url("/post/{$post->slug}"))
                 ->openUrlInNewTab()
                 ->icon('heroicon-o-link')
                 ->color('primary'),

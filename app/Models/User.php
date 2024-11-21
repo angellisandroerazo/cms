@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use BezhanSalleh\FilamentShield\Traits\HasPanelShield;
+use Carbon\Carbon;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,11 +17,14 @@ use Spatie\Permission\Traits\HasRoles;
 use Yebor974\Filament\RenewPassword\Traits\RenewPassword;
 use Yebor974\Filament\RenewPassword\Contracts\RenewPasswordContract;
 use Filament\Models\Contracts\FilamentUser;
+use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
+use Illuminate\Support\Facades\Storage;
+use Filament\Models\Contracts\HasAvatar;
 
-class User extends Authenticatable implements RenewPasswordContract, FilamentUser
+class User extends Authenticatable implements FilamentUser, HasAvatar, RenewPasswordContract
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasUuids, HasRoles, HasPanelShield, RenewPassword, LogsActivity;
+    use HasFactory, Notifiable, HasUuids, HasRoles, HasPanelShield, LogsActivity, TwoFactorAuthenticatable, RenewPassword;
 
     protected $table = 'users';
     protected $primaryKey = 'id';
@@ -34,6 +38,7 @@ class User extends Authenticatable implements RenewPasswordContract, FilamentUse
      */
     protected $fillable = [
         'name',
+        'avatar_url',
         'email',
         'password',
         'force_renew_password',
@@ -68,19 +73,19 @@ class User extends Authenticatable implements RenewPasswordContract, FilamentUse
         return true;
     }
 
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->avatar_url ? Storage::url($this->avatar_url) : null;
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly(['name', 'email' , 'password', 'last_renew_password_at']);
+            ->logOnly(['name', 'email', 'password', 'last_renew_password_at']);
     }
 
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
-    }
-
-    public function comments(): HasMany
-    {
-        return $this->hasMany(Comment::class);
     }
 }

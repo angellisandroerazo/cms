@@ -6,6 +6,8 @@ use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
 use App\Models\User;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Fieldset;
 use Filament\Tables\Filters\QueryBuilder;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieTagsInput;
@@ -18,6 +20,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 
 
 
@@ -26,6 +29,8 @@ class PostResource extends Resource
     protected static ?string $model = Post::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+
+    protected static ?string $navigationGroup = 'Posts';
 
     public static function form(Form $form): Form
     {
@@ -74,10 +79,14 @@ class PostResource extends Resource
                             ->required()
                             ->maxLength(190),
                     ]),
-                Forms\Components\Toggle::make('is_published')
-                    ->onIcon('heroicon-m-check-circle')
-                    ->offIcon('heroicon-m-x-circle')
-                    ->default(false),
+                Section::make('Publicar')
+                    ->description('Si está marcado, el post estará disponible para los usuarios (OJO: La fecha reflejada en el post es la fecha de creación)')
+                    ->schema([
+                        Forms\Components\Toggle::make('is_published')
+                            ->onIcon('heroicon-m-check-circle')
+                            ->offIcon('heroicon-m-x-circle')
+                            ->default(false),
+                    ])
             ]);
     }
 
@@ -110,7 +119,7 @@ class PostResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
@@ -128,16 +137,19 @@ class PostResource extends Resource
                     ->multiple()
                     ->searchable()
                     ->preload(),
+                DateRangeFilter::make('created_at'),
+                DateRangeFilter::make('updated_at'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\Action::make('Ver')
-                    ->label('Ir a la publicación')
-                    ->url(fn(Post $post) => url("/{$post->slug}"))
-                    ->openUrlInNewTab()
-                    ->icon('heroicon-o-link')
-                    ->color(''),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\Action::make('Ver')
+                        ->label('Ir a la publicación')
+                        ->url(fn(Post $post) => url("/post/{$post->slug}"))
+                        ->openUrlInNewTab()
+                        ->icon('heroicon-o-link'),
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make()->color('primary'),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -149,7 +161,7 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\CommentsRelationManager::class,
+            //
         ];
     }
 

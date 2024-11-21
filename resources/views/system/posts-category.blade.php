@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', $pageTitle . ' - '. config('app.name'))
+@section('title', $pageTitle)
 
 @section('content')
 <div class="flex items-center justify-around w-full">
@@ -13,17 +13,11 @@
                 <x-slot name="category">
                     {{$post->category->name}}
                 </x-slot>
-                <x-slot name="author">
-                    {{$post->user->name}}
-                </x-slot>
                 <x-slot name="created_at">
                     {{ucfirst($post->created_at->translatedFormat('F j, Y g:i A'))}}
                 </x-slot>
                 <x-slot name="image">
                     {{config('app.url')}}/storage/{{$post->image}}
-                </x-slot>
-                <x-slot name="body">
-                    {!! \Illuminate\Support\Str::words($post->body, 20, '...') !!}
                 </x-slot>
                 <x-slot name="slug">
                     {{$post->slug}}

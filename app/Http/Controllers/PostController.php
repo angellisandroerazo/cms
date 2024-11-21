@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\System;
 use App\Models\Tag;
 use App\Models\Taggable;
 use Illuminate\Http\Request;
@@ -14,7 +14,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::where('is_published', true)
+        $posts = Post::select('id', 'title', 'slug', 'image', 'category_id', 'created_at')
+            ->where('is_published', true)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
@@ -34,23 +35,21 @@ class PostController extends Controller
             return view("system.errors.no-exist");
         }
 
-        $comments = Comment::where('post_id', $post->id)
-            ->orderBy('created_at', 'desc')
-            ->limit(10)->get();
-
         $taggable = Taggable::where('post_id', $post->id)->pluck('tag_id');
 
         $tags = Tag::whereIn('id', $taggable)->get();
 
-        $related_post  = Post::where('is_published', true)
+        $related_post = Post::select('id', 'title', 'slug', 'image', 'category_id', 'created_at')
+            ->where('is_published', true)
             ->where('slug', '!=', $slug)
             ->where('category_id', $post->category_id)
             ->orderBy('created_at', 'desc')
-            ->limit(5)->get();
+            ->limit(5)
+            ->get();
 
         return view(
             "system.view",
-            compact("post", "tags", "comments", "related_post"),
+            compact("post", "tags", "related_post"),
             ["pageTitle" => $post->title]
         );
     }

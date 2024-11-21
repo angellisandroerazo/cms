@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Posts - '. config('app.name'))
+@section('title', 'Posts')
 
 @section('content')
 <div class="flex items-center justify-around w-full">
@@ -12,12 +12,6 @@
                 </x-slot>
                 <x-slot name="category">
                     {{$post->category->name}}
-                </x-slot>
-                <x-slot name="avatar">
-                    {{$post->user}}
-                </x-slot>
-                <x-slot name="author">
-                    {{$post->user->name}}
                 </x-slot>
                 <x-slot name="created_at">
                     {{ucfirst($post->created_at->translatedFormat('F j, Y g:i A'))}}
