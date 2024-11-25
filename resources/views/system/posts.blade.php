@@ -3,8 +3,9 @@
 @section('title', 'Posts')
 
 @section('content')
-<div class="flex items-center justify-around w-full">
-    <div class="grid grid-cols-1 mt-20 md:lg:grid-cols-3">
+<x-title title="Posts" subtitle="" />
+<div class="flex items-center justify-around w-full p-10">
+    <div class="grid grid-cols-1 space-x-3 rounded-md md:grid-cols-3">
         @foreach ($posts as $post)
             <x-post>
                 <x-slot name="title">

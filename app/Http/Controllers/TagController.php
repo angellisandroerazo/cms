@@ -37,7 +37,10 @@ class TagController extends Controller
             ->paginate(10);
 
         // Retorna la vista con los posts y el título de la página
-        return view("system.posts-category", compact("posts"),
-            ["pageTitle" => ucfirst($tag->name)]);
+        return view(
+            "system.posts-tag",
+            compact("posts"),
+            ["pageTitle" => ucfirst($tag->name)]
+        );
     }
 }

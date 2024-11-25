@@ -44,7 +44,7 @@ class PostController extends Controller
             ->where('slug', '!=', $slug)
             ->where('category_id', $post->category_id)
             ->orderBy('created_at', 'desc')
-            ->limit(5)
+            ->limit(6)
             ->get();
 
         return view(

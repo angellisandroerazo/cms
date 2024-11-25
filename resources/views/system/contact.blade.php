@@ -2,14 +2,10 @@
 
 @section('title', $contact->contact_title)
 @section('content')
+<x-title title="{{$contact->contact_title}}" subtitle=""/>
 <div class="flex flex-col items-center justify-center p-8">
-    <!-- Primera Columna -->
-    <div class="w-full mt-10 space-y-10 md:w-3/5">
-        <!-- Título y descripción -->
+    <div class="w-full mt-10 space-y-10 lg:md:w-3/5">
         <div>
-            <h1 class="mb-6 text-4xl font-bold md:text-6xl lg:text-6xlxl text-pretty">
-                {{$contact->contact_title}}
-            </h1>
             <p class="text-base">
                 {{$contact->contact_body}}
             </p>

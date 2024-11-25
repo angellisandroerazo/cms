@@ -1,6 +1,6 @@
 <div class="fixed z-10 shadow-md navbar bg-base-100">
     <div class="navbar-start">
-        <a href="/" class="text-xl normal-case btn btn-ghost"> <img class="w-8 h-8"
+        <a href="/posts" class="text-xl normal-case btn btn-ghost"> <img class="w-8 h-8"
                 src="{{$system->url_site}}/storage/{{$system->logo}}" alt="Logo" /> {{$system->name_site}}</a>
     </div>
 

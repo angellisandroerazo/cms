@@ -3,8 +3,9 @@
 @section('title', $pageTitle)
 
 @section('content')
+<x-title title={{$pageTitle}} subtitle="Etiqueta" />
 <div class="flex items-center justify-around w-full">
-    <div class="grid grid-cols-1 mt-20 lg:grid-cols-3 md:grid-cols-3">
+    <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3">
         @foreach ($posts as $post)
             <x-post>
                 <x-slot name="title">

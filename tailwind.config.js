@@ -42,7 +42,7 @@ export default {
 
                     error: "#ff5861",
 
-                    "--rounded-box": "0.25rem", // border radius rounded-box utility class, used in card and other large boxes
+                    "--rounded-box": "0.375rem", // border radius rounded-box utility class, used in card and other large boxes
                     "--rounded-btn": "0.5rem", // border radius rounded-btn utility class, used in buttons and similar element
                     "--rounded-badge": "0.5rem", // border radius rounded-badge utility class, used in badges and similar
                     "--animation-btn": "0.25s", // duration of animation when you click on button
@@ -71,7 +71,7 @@ export default {
 
                     error: "#ff5861",
 
-                    "--rounded-box": "0.25rem", // border radius rounded-box utility class, used in card and other large boxes
+                    "--rounded-box": "0.375rem", // border radius rounded-box utility class, used in card and other large boxes
                     "--rounded-btn": "0.5rem", // border radius rounded-btn utility class, used in buttons and similar element
                     "--rounded-badge": "0.5rem", // border radius rounded-badge utility class, used in badges and similar
                     "--animation-btn": "0.25s", // duration of animation when you click on button
