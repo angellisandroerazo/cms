@@ -23,7 +23,7 @@ class PostPolicy
      */
     public function view(User $user, Post $post): bool
     {
-        return $user->can('view_post');
+        return $user->hasRole('super_admin') || $user->id === $post->author_id && $user->can('view_post');
     }
 
     /**
@@ -39,7 +39,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post): bool
     {
-        return $user->can('update_post');
+        return $user->hasRole('super_admin') || $user->id === $post->author_id && $user->can('update_post');
     }
 
     /**
@@ -47,7 +47,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return $user->can('delete_post');
+        return $user->hasRole('super_admin') || $user->id === $post->author_id && $user->can('delete_post');
     }
 
     /**
@@ -63,7 +63,7 @@ class PostPolicy
      */
     public function forceDelete(User $user, Post $post): bool
     {
-        return $user->can('force_delete_post');
+        return $user->hasRole('super_admin') || $user->id === $post->author_id && $user->can('force_delete_post');
     }
 
     /**
@@ -79,7 +79,7 @@ class PostPolicy
      */
     public function restore(User $user, Post $post): bool
     {
-        return $user->can('restore_post');
+        return $user->hasRole('super_admin') || $user->id === $post->author_id && $user->can('restore_post');
     }
 
     /**
@@ -95,7 +95,7 @@ class PostPolicy
      */
     public function replicate(User $user, Post $post): bool
     {
-        return $user->can('replicate_post');
+        return $user->hasRole('super_admin') || $user->id === $post->author_id && $user->can('replicate_post');
     }
 
     /**
