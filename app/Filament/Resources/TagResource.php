@@ -32,7 +32,7 @@ class TagResource extends Resource
                 Forms\Components\TextInput::make('slug')
                     ->readonly()
                     ->hiddenOn('create')
-                    ->hint('Solo puedes copiar este texto'),
+                    ->hint('Este texto solo se puede copiar.'),
             ]);
     }
 

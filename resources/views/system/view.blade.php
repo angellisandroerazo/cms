@@ -7,7 +7,7 @@
     <!--  Primera Columna -->
     <div class="w-full m-5 space-y-5 md:lg:mt-20 md:lg:w-4/6">
         <article class="p-10 rounded-md bg-base-200">
-            <a class="mb-4 badge badge-primary hover:underline"
+            <a class="mb-4 font-semibold badge badge-primary hover:underline"
                 href="/category/{{$post->category->slug}}">{{$post->category->name}}</a>
             <h1 class="mb-5 text-3xl font-bold md:lg:text-5xl text-pretty">{{$post->title}}</h1>
             <div class="divider"></div>
@@ -35,7 +35,7 @@
         <div class="p-5 rounded-md bg-base-200">
             <h3 class="py-2 text-xl font-bold text-pretty">Etiquetas</h3>
             @foreach ($tags as $tag)
-                <a class="badge badge-primary hover:underline" href="/tag/{{$tag->slug}}">{{$tag->name}}</a>
+                <a class="font-semibold badge badge-secondary hover:underline" href="/tag/{{$tag->slug}}">{{$tag->name}}</a>
             @endforeach
         </div>
 

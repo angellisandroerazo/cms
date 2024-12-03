@@ -18,7 +18,6 @@ class System extends Model
 
     protected $fillable = [
         'name_site',
-        'url_site',
         'favicon',
         'logo',
         'enable_comments',
@@ -54,7 +53,6 @@ class System extends Model
         return LogOptions::defaults()
             ->logOnly([
                 'name_site',
-                'url_site',
                 'favicon',
                 'logo',
                 'enable_comments',

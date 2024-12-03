@@ -4,6 +4,14 @@
 
 @section('content')
 <x-title title={{$pageTitle}} subtitle="Categoría" />
+<div class="flex items-center justify-center my-10">
+    <div class="w-full lg:md:w-3/5">
+        <p class="text-base">
+            {{$pageDescription}}
+        </p>
+    </div>
+
+</div>
 <div class="flex items-center justify-around w-full">
     <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3">
         @foreach ($posts as $post)

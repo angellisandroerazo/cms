@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class,'index'])->name('home');
 
 //Listar todos los posts
-Route::get('/posts', [PostController::class,'index']);
+Route::get('/posts', [PostController::class,'index'])->name('posts');
 
 //Paginas informativas
 Route::get('/about', [HomeController::class,'about']);
@@ -19,13 +19,13 @@ Route::get('/about', [HomeController::class,'about']);
 Route::get('/contact', [HomeController::class,'contact']);
 
 //Paginas extras
-Route::get('/{slug}', [HomeController::class,'extraPage']);
+Route::get('/e/{slug}', [HomeController::class,'extraPage']);
 
 //Ver posts
-Route::get('/post/{slug}', [PostController::class,'view']);
+Route::get('/post/{slug}', [PostController::class,'view'])->name('post');
 
 //Categorias
-Route::get('/category/{category}', [CategoryController::class,'viewPosts']);
+Route::get('/category/{category}', [CategoryController::class,'viewPosts'])->name('category');
 
-Route::get('/tag/{tag}', [TagController::class,'viewPosts']);
+Route::get('/tag/{tag}', [TagController::class,'viewPosts'])->name('tag');
 

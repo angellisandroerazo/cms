@@ -13,7 +13,6 @@ return new class extends Migration {
         Schema::create('system', function (Blueprint $table) {
             $table->uuid('id')->primary()->unique();
             $table->string('name_site');
-            $table->string('url_site');
             $table->string('logo');
             $table->string('favicon');
 

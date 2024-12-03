@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('templates.header', function ($view) {
 
-            $info_site = System::select('name_site', 'url_site', 'favicon', 'logo', 'about', 'contact', 'about_title', 'contact_title')
+            $info_site = System::select('name_site', 'favicon', 'logo', 'about', 'contact', 'about_title', 'contact_title')
                 ->first();
 
             $categories = Category::select('name', 'slug')
@@ -54,7 +54,6 @@ class AppServiceProvider extends ServiceProvider
                 $info_site = new System();
                 $info_site->name_site = config('app.name');
                 $info_site->favicon = 'images/favicon.ico';
-                $info_site->url_site = config('app.url');
                 $info_site->about = false;
                 $info_site->contact = false;
 
@@ -88,14 +87,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('layouts.layout', function ($view) {
-            $info_site = System::select('name_site', 'favicon', 'url_site')
+            $info_site = System::select('name_site', 'favicon')
                 ->first();
 
             if (!$info_site) {
                 $info_site = new System();
                 $info_site->name_site = config('app.name');
                 $info_site->favicon = 'images/favicon.ico';
-                $info_site->url_site = config('app.url');
 
                 $view->with('system', $info_site);
             }

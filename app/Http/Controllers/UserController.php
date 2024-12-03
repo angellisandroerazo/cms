@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function logout(Request $request)
+   /*  public function logout(Request $request)
     {
         Auth::guard('web')->logout();
 
@@ -16,5 +16,5 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
-    }
+    } */
 }

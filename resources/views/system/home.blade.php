@@ -12,7 +12,7 @@
             <p class="mb-5">
                 {{$info_site->landing_body}}
             </p>
-            <a class="btn btn-primary" href="/posts">Get Started</a>
+            <a class="btn btn-primary" href="/posts">Ver posts</a>
         </div>
     </div>
 </div>

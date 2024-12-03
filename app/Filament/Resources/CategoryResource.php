@@ -33,7 +33,7 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('slug')
                     ->readonly()
                     ->hiddenOn('create')
-                    ->hint('Solo puedes copiar este texto'),
+                    ->hint('Este texto solo se puede copiar.'),
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->rows(5)

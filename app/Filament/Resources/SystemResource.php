@@ -41,10 +41,6 @@ class SystemResource extends Resource
                                             Forms\Components\TextInput::make('name_site')
                                                 ->required()
                                                 ->maxLength(190),
-                                            Forms\Components\TextInput::make('url_site')
-                                                ->required()
-                                                ->maxLength(190)
-                                                ->url(),
                                             Forms\Components\FileUpload::make('logo')
                                                 ->hint('Max height 400')
                                                 ->maxSize(1024 * 1024 * 2)

@@ -11,7 +11,7 @@
     </nav>
     <nav class="grid grid-flow-col gap-4">
         @foreach ($extra_pages as $page)
-            <a class="link link-hover" href="/{{$page->slug}}">{{$page->title}}</a>
+            <a class="link link-hover" href="/e/{{$page->slug}}">{{$page->title}}</a>
         @endforeach
     </nav>
     <aside>

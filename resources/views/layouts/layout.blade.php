@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', "{{$system->name_site}}")</title>
-    <link rel="icon" type="image/ico" sizes="16x16" href="{{$system->url_site}}/storage/{{$system->favicon}}">
+    <link rel="icon" type="image/ico" sizes="16x16" href="{{config('app.url')}}/storage/{{$system->favicon}}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
